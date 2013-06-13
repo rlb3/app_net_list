@@ -7,11 +7,11 @@ module AppNet
     stream = RestClient.get 'https://alpha-api.app.net/stream/0/posts/stream/global'
     json   = JSON.parse stream
 
-    data_stash = []
+    data_stash = {}
     json['data'].each do |data|
       user = data['user']['username']
       message = data['text']
-      data_stash << "#{user}: #{message}\n"
+      data_stash[user] = message
     end
     data_stash                       
   end
